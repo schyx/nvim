@@ -1,0 +1,15 @@
+snippet beg "begin environment"
+  \begin{${1:env}}
+    $0
+  \end{${1:env}}
+snippet dm "display math"
+  \[
+    $0
+  \]
+snippet ang "angle brackets"
+  \langle $1, $2 \rangle $0
+snippet nc "new command"
+  \newcommand{\\${1:name}}[${2:args}]{${3:definition}}$0
+snippet prob "new problem"
+  \problem{$1}{${2:None}}
+  $0
