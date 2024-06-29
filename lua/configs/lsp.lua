@@ -5,6 +5,7 @@ local servers = {
   "tsserver",
   "texlab",
   "pyright",
+  "rust_analyzer",
 }
 
 require('mason-lspconfig').setup({

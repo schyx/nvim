@@ -27,6 +27,7 @@ local function get_git_ignored_files_in(dir)
 
   return ignored_files
 end
+
 local oil = require("oil")
 
 oil.setup({

@@ -1,4 +1,4 @@
-require('toggleterm').setup({
-  open_mapping = '<leader>t',
-  insert_mappings = false
+require("toggleterm").setup({
+  open_mapping = "<leader>tt",
+  insert_mappings = false,
 })

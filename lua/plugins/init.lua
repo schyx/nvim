@@ -1,6 +1,5 @@
 -- setup plugins here
 local plugins = {
-  { 'alessandroyorba/alduin' }, -- colors
   {
     "neanias/everforest-nvim",
     version = false,
@@ -19,7 +18,6 @@ local plugins = {
       palette.bg_green = '#202424' -- gets the background of nvim to match terminal
     end
   },
-
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.6', -- fuzzy finder!
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -104,34 +102,70 @@ local plugins = {
     },
   },
   {
-    "mfussenegger/nvim-lint", -- linter
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
-    config = function()
-      local lint = require("lint")
-
-      lint.linters_by_ft = {
-        javascript = { "eslint" },
-        typescript = { "eslint" },
-        javascriptreact = { "eslint" },
-        typescriptreact = { "eslint" },
-        svelte = { "eslint" },
-        python = { "pylint" },
-      }
-
-      local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-        group = lint_augroup,
-        callback = function()
-          lint.try_lint()
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        -- Customize or remove this keymap to your liking
+        "<leader>c",
+        function()
+          require("conform").format({ async = true, lsp_format = "fallback" })
         end,
-      })
-
+        mode = "",
+        desc = "Format buffer",
+      },
+    },
+    -- Everything in opts will be passed to setup()
+    opts = {
+      -- Define your formatters
+      formatters_by_ft = {
+        lua = { "stylua" },
+        rust = { "rustfmt" },
+      },
+      -- Set up format-on-save
+      format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+      -- Customize formatters
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2" },
+        },
+      },
+    },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
+  -- {
+  --   "mfussenegger/nvim-lint", -- linter
+  --   event = {
+  --     "BufReadPre",
+  --     "BufNewFile",
+  --   },
+  --   config = function()
+  --     local lint = require("lint")
+  --
+  --     lint.linters_by_ft = {
+  --       javascript = { "eslint" },
+  --       typescript = { "eslint" },
+  --       javascriptreact = { "eslint" },
+  --       typescriptreact = { "eslint" },
+  --       svelte = { "eslint" },
+  --       python = { "pylint" },
+  --     }
+  --
+  --     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+  --
+  --     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  --       group = lint_augroup,
+  --       callback = function()
+  --         lint.try_lint()
+  --       end,
+  --     })
+  --
+  --   end,
+  -- },
   {
     "lervag/vimtex",
     lazy = false,
