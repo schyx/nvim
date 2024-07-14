@@ -11,16 +11,17 @@ local plugins = {
         background = "hard",
         disable_italic_comments = true,
         transparent_background_level = 1,
-        ui_contrast = 'high',
+        ui_contrast = "high",
       })
     end,
-    colour_override = function (palette)
-      palette.bg_green = '#202424' -- gets the background of nvim to match terminal
-    end
+    colour_override = function(palette)
+      palette.bg_green = "#202424" -- gets the background of nvim to match terminal
+    end,
   },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.6', -- fuzzy finder!
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.6", -- fuzzy finder!
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 
   {
@@ -42,17 +43,17 @@ local plugins = {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       }
-    end
+    end,
   },
   {
-    'stevearc/oil.nvim', -- replace netrw
+    "stevearc/oil.nvim", -- replace netrw
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "williamboman/mason.nvim",
@@ -71,7 +72,7 @@ local plugins = {
           require("luasnip").config.set_config(opts)
           -- snipmate format
           require("luasnip.loaders.from_snipmate").load()
-          require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.g.snipmate_snippets_path or "" }
+          require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.snipmate_snippets_path or "" })
         end,
       },
 
@@ -166,35 +167,32 @@ local plugins = {
   --
   --   end,
   -- },
-  {
-    "lervag/vimtex",
-    lazy = false,
-    init = function()
-      vim.g.vimtex_view_general_viewer = 'okular'
-      vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-      vim.g.vimtex_quickfix_enabled = 1
-      vim.g.vimtex_syntax_enabled = 1
-      vim.g.vimtex_quickfix_mode = 0
-    end,
-  },
+  -- {
+  --   "lervag/vimtex",
+  --   lazy = false,
+  --   init = function()
+  --     vim.g.vimtex_view_general_viewer = 'okular'
+  --     vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
+  --     vim.g.vimtex_quickfix_enabled = 1
+  --     vim.g.vimtex_syntax_enabled = 1
+  --     vim.g.vimtex_quickfix_mode = 0
+  --   end,
+  -- },
   {
     "ecthelionvi/NeoView.nvim", -- saves folds and cursor position
     lazy = false,
   },
-  {'akinsho/toggleterm.nvim', version = "*", config = true},
-  -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     opts = {
       -- add any options here
     },
     lazy = false,
   },
-  { 'ggandor/leap.nvim' },
+  { "ggandor/leap.nvim" },
 }
 
 local opts = {}
-
 
 require("lazy").setup(plugins, opts)
 require("configs")

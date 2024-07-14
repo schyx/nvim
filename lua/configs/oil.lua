@@ -1,31 +1,24 @@
-local function get_git_ignored_files_in(dir)
+local function is_git_ignored_files_in(dir, name)
+  if name == ".." then
+    return false
+  end
+
   local found = vim.fs.find(".git", {
     upward = true,
     path = dir,
   })
 
   if #found == 0 then
-    return {}
+    return false
   end
 
-  local cmd = string.format(
-  'git -C %s ls-files --ignored --exclude-standard --others --directory | grep -v "/.*\\/"',
-  dir
-  )
-
-  local handle = io.popen(cmd)
+  local handle = io.popen(string.format("git check-ignore %s", name))
   if handle == nil then
-    return
+    return false
   end
-
-  local ignored_files = {}
-  for line in handle:lines "*l" do
-    line = line:gsub("/$", "")
-    table.insert(ignored_files, line)
-  end
+  local result = handle:read("*a")
   handle:close()
-
-  return ignored_files
+  return result ~= ""
 end
 
 local oil = require("oil")
@@ -34,8 +27,7 @@ oil.setup({
   view_options = {
     show_hidden = false,
     is_hidden_file = function(name, _)
-      local ignored_files = get_git_ignored_files_in(oil.get_current_dir())
-      return vim.tbl_contains(ignored_files, name)
+      return is_git_ignored_files_in(oil.get_current_dir(), name)
     end,
   },
 
@@ -59,23 +51,19 @@ oil.setup({
 })
 
 vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-vim.keymap.set("n", "<leader>v", "<CMD>vsplit<CR><CMD>Oil<CR>", { desc = "Open a vertical split in oil"})
-vim.keymap.set('n', '<leader>x',
-  function()
-    local visible_bufs = vim.tbl_filter(function (bufnr)
-      return 1 == vim.fn.buflisted(bufnr)
-    end, vim.api.nvim_list_bufs())
+vim.keymap.set("n", "<leader>x", function()
+  local visible_bufs = vim.tbl_filter(function(bufnr)
+    return 1 == vim.fn.buflisted(bufnr)
+  end, vim.api.nvim_list_bufs())
 
-    if #visible_bufs >= 2 then
-      local key = vim.api.nvim_replace_termcodes('<cmd>bd<CR>', true, false, true)
-      vim.api.nvim_feedkeys(key, 'n', false)
-    elseif #visible_bufs == 1 then
-      local bufnr = vim.api.nvim_get_current_buf()
-      local key = vim.api.nvim_replace_termcodes('<cmd>Oil<CR><cmd>' .. bufnr .. 'bd<CR>', true, false, true)
-      vim.api.nvim_feedkeys(key, 'n', false)
-    else
-      print("No buffers open!")
-    end
-  end,
-  { desc = "close current buffer" }
-)
+  if #visible_bufs >= 2 then
+    local key = vim.api.nvim_replace_termcodes("<cmd>bd<CR>", true, false, true)
+    vim.api.nvim_feedkeys(key, "n", false)
+  elseif #visible_bufs == 1 then
+    local bufnr = vim.api.nvim_get_current_buf()
+    local key = vim.api.nvim_replace_termcodes("<cmd>Oil<CR><cmd>" .. bufnr .. "bd<CR>", true, false, true)
+    vim.api.nvim_feedkeys(key, "n", false)
+  else
+    print("No buffers open!")
+  end
+end, { desc = "close current buffer" })
