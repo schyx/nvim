@@ -167,21 +167,23 @@ local plugins = {
   --
   --   end,
   -- },
-  -- {
-  --   "lervag/vimtex",
-  --   lazy = false,
-  --   init = function()
-  --     vim.g.vimtex_view_general_viewer = 'okular'
-  --     vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-  --     vim.g.vimtex_quickfix_enabled = 1
-  --     vim.g.vimtex_syntax_enabled = 1
-  --     vim.g.vimtex_quickfix_mode = 0
-  --   end,
-  -- },
+  {
+    "lervag/vimtex",
+    lazy = false,
+    init = function()
+      vim.g.vimtex_view_general_viewer = "okular"
+      vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
+      vim.g.vimtex_quickfix_enabled = 1
+      vim.g.vimtex_syntax_enabled = 1
+      vim.g.vimtex_quickfix_mode = 0
+    end,
+  },
   {
     "ecthelionvi/NeoView.nvim", -- saves folds and cursor position
     lazy = false,
   },
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
     "numToStr/Comment.nvim",
     opts = {

@@ -1,25 +1,23 @@
-local function is_git_ignored_files_in(dir, name)
-  if name == ".." then
-    return false
-  end
+local git_ignored = setmetatable({}, {
+  __index = function(self, key)
+    local proc = vim.system({ "git", "ls-files", "--ignored", "--exclude-standard", "--others", "--directory" }, {
+      cwd = key,
+      text = true,
+    })
+    local result = proc:wait()
+    local ret = {}
+    if result.code == 0 then
+      for line in vim.gsplit(result.stdout, "\n", { plain = true, trimempty = true }) do
+        -- Remove trailing slash
+        line = line:gsub("/$", "")
+        table.insert(ret, line)
+      end
+    end
 
-  local found = vim.fs.find(".git", {
-    upward = true,
-    path = dir,
-  })
-
-  if #found == 0 then
-    return false
-  end
-
-  local handle = io.popen(string.format("git check-ignore %s", name))
-  if handle == nil then
-    return false
-  end
-  local result = handle:read("*a")
-  handle:close()
-  return result ~= ""
-end
+    rawset(self, key, ret)
+    return ret
+  end,
+})
 
 local oil = require("oil")
 
@@ -27,7 +25,8 @@ oil.setup({
   view_options = {
     show_hidden = false,
     is_hidden_file = function(name, _)
-      return is_git_ignored_files_in(oil.get_current_dir(), name)
+      local dir = require("oil").get_current_dir()
+      return vim.list_contains(git_ignored[dir], name)
     end,
   },
 
@@ -51,6 +50,7 @@ oil.setup({
 })
 
 vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>v", "<CMD>vsplit<CR><CMD>Oil<CR>", { desc = "Open a vertical split in oil" })
 vim.keymap.set("n", "<leader>x", function()
   local visible_bufs = vim.tbl_filter(function(bufnr)
     return 1 == vim.fn.buflisted(bufnr)
