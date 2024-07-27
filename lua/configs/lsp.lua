@@ -1,4 +1,4 @@
-require('mason').setup()
+require("mason").setup()
 
 local servers = {
   "lua_ls",
@@ -8,16 +8,15 @@ local servers = {
   "rust_analyzer",
 }
 
-require('mason-lspconfig').setup({
+require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local on_attach = function()
-end
+local on_attach = function() end
 
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 
 for _, lsp in ipairs(servers) do
   if lsp ~= "lua_ls" then
@@ -38,14 +37,14 @@ lspconfig.lua_ls.setup({
       },
       workspace = {
         library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
         },
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
-    }
-  }
+    },
+  },
 })
 
-
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })

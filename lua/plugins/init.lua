@@ -178,10 +178,6 @@ local plugins = {
       vim.g.vimtex_quickfix_mode = 0
     end,
   },
-  {
-    "ecthelionvi/NeoView.nvim", -- saves folds and cursor position
-    lazy = false,
-  },
   { "akinsho/toggleterm.nvim", version = "*", config = true },
   -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
   {
