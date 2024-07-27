@@ -30,9 +30,6 @@ map("n", "<S-Tab>", "<cmd>bprev<CR>")
 -- no highlights
 map("n", "<leader>n", "<cmd>noh<CR>")
 
--- delete buffer
-map("n", "<leader>bd", "<cmd>bd<CR>")
-
 -- shows the floating window no matter what
 map("n", "[d", function()
   vim.diagnostic.goto_prev()

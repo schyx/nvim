@@ -14,16 +14,7 @@ local plugins = {
         ui_contrast = "high",
       })
     end,
-    colour_override = function(palette)
-      palette.bg_green = "#202424" -- gets the background of nvim to match terminal
-    end,
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.6", -- fuzzy finder!
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
-
   {
     "nvim-treesitter/nvim-treesitter", -- language parsing
     event = { "BufReadPost", "BufNewFile" },
@@ -188,6 +179,10 @@ local plugins = {
     lazy = false,
   },
   { "ggandor/leap.nvim" },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
 
 local opts = {}
