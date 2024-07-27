@@ -3,7 +3,7 @@ local function pwd()
 end
 
 local function time()
-  return os.date("%c")
+  return os.date("%X")
 end
 
 require("lualine").setup({
