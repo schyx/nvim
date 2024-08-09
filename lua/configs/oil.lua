@@ -46,7 +46,7 @@ oil.setup({
     ["g."] = "actions.toggle_hidden",
     ["g\\"] = "actions.toggle_trash",
   },
-  use_default_keynmaps = false,
+  use_default_keymaps = false,
 })
 
 vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
