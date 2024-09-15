@@ -2,10 +2,11 @@ require("mason").setup()
 
 local servers = {
   "lua_ls",
-  "tsserver",
+  "pylsp",
   "texlab",
-  "pyright",
+  "ruff",
   "rust_analyzer",
+  "clangd",
 }
 
 require("mason-lspconfig").setup({
