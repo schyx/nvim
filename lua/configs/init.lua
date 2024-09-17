@@ -1,6 +1,5 @@
 require("configs.cmp")
 require("configs.color")
-require("configs.comments")
 require("configs.format")
 require("configs.fzf")
 require("configs.leap")

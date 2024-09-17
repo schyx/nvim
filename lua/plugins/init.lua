@@ -28,18 +28,10 @@ local plugins = {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = function()
-      return {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end,
   },
   {
     "stevearc/oil.nvim", -- replace netrw
     opts = {},
-    -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
@@ -66,9 +58,7 @@ local plugins = {
           require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.snipmate_snippets_path or "" })
         end,
       },
-
-      -- autopairing of (){}[] etc
-      {
+      { -- autopairing of (){}[] etc
         "windwp/nvim-autopairs",
         opts = {
           fast_wrap = {},
@@ -76,20 +66,16 @@ local plugins = {
         },
         config = function(_, opts)
           require("nvim-autopairs").setup(opts)
-
           -- setup cmp for autopairs
           local cmp_autopairs = require("nvim-autopairs.completion.cmp")
           require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
-
-      -- cmp sources plugins
-      {
+      { -- cmp sources plugins
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
       },
     },
   },
@@ -98,8 +84,7 @@ local plugins = {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
-      {
-        -- Customize or remove this keymap to your liking
+      { -- Customize or remove this keymap to your liking
         "<leader>c",
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
@@ -137,13 +122,10 @@ local plugins = {
     },
     config = function()
       local lint = require("lint")
-
       lint.linters_by_ft = {
         java = { "checkstyle" },
       }
-
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
@@ -163,15 +145,6 @@ local plugins = {
       vim.g.vimtex_syntax_enabled = 1
       vim.g.vimtex_quickfix_mode = 0
     end,
-  },
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
-  -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
   },
   { "ggandor/leap.nvim" },
   {
