@@ -1,3 +1,4 @@
+require("configs.alpha")
 require("configs.cmp")
 require("configs.color")
 require("configs.format")
