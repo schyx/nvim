@@ -16,26 +16,9 @@ return {
     "-Moliere",
   },
   {
-    "To dwellers in a wood, almost every species of tree has",
-    "its voice as well as its feature.",
-    "",
-    "-Thomas Hardy, Under the Greenwood Tree",
-  },
-  {
     "You are my creator, but I am your master; Obey!",
     "",
     "-Mary Shelley, Frankenstein",
-  },
-  {
-    "All my life, my heart has yearned for a thing I cannot name.",
-    "",
-    "-Andre Breton, Mad Love",
-  },
-  {
-    "In the middle of the journey of our life I found myself within",
-    "a dark woods where the straight way was lost.",
-    "",
-    "-Dante Alighieri, Inferno",
   },
   {
     "As the man said, for every complex problem there’s a simple solution, and it’s wrong.",
@@ -66,10 +49,5 @@ return {
     "with the gift of life that determines who you are.",
     "",
     "-Mewtwo",
-  },
-  {
-    "The world must remain beautiful. I can't stand the thought of it becoming uglier.",
-    "",
-    "-Lysandre",
   },
 }
