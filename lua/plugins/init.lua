@@ -67,8 +67,8 @@ local plugins = {
         config = function(_, opts)
           require("nvim-autopairs").setup(opts)
           -- setup cmp for autopairs
-          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+          -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+          -- require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
       { -- cmp sources plugins
@@ -99,6 +99,7 @@ local plugins = {
       formatters_by_ft = {
         lua = { "stylua" },
         rust = { "rustfmt" },
+        haskell = { "hls" },
       },
       -- Set up format-on-save
       format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
@@ -114,26 +115,26 @@ local plugins = {
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
-  {
-    "mfussenegger/nvim-lint", -- linter
-    event = {
-      "BufReadPre",
-      "BufNewFile",
-    },
-    config = function()
-      local lint = require("lint")
-      lint.linters_by_ft = {
-        java = { "checkstyle" },
-      }
-      local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-        group = lint_augroup,
-        callback = function()
-          lint.try_lint()
-        end,
-      })
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint", -- linter
+  --   event = {
+  --     "BufReadPre",
+  --     "BufNewFile",
+  --   },
+  --   config = function()
+  --     local lint = require("lint")
+  --     -- lint.linters_by_ft = {
+  --     --   java = { "checkstyle" },
+  --     -- }
+  --     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+  --     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  --       group = lint_augroup,
+  --       callback = function()
+  --         lint.try_lint()
+  --       end,
+  --     })
+  --   end,
+  -- },
   { "mfussenegger/nvim-jdtls" },
   -- {
   --   "lervag/vimtex",
@@ -146,7 +147,6 @@ local plugins = {
   --     vim.g.vimtex_quickfix_mode = 0
   --   end,
   -- },
-  { "ggandor/leap.nvim" },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },

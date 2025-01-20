@@ -2,15 +2,21 @@ require("mason").setup()
 
 local servers = {
   "lua_ls",
-  "pylsp",
   "texlab",
   "ruff",
   "rust_analyzer",
   "clangd",
+  "hls",
 }
 
 require("mason-lspconfig").setup({
-  ensure_installed = servers,
+  ensure_installed = {
+    "lua_ls",
+    "texlab",
+    "ruff",
+    "rust_analyzer",
+    "clangd",
+  },
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()

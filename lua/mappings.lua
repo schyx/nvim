@@ -24,8 +24,8 @@ map("t", "jk", "<C-\\><C-n>")
 map("t", "kj", "<C-\\><C-n>")
 
 -- mappings for buffers
-map("n", "<Tab>", "<cmd>bnext<CR>")
-map("n", "<S-Tab>", "<cmd>bprev<CR>")
+map("n", "<CR>", "<cmd>bnext<CR>")
+map("n", "<S-CR>", "<cmd>bprev<CR>")
 
 -- no highlights
 map("n", "<leader>n", "<cmd>noh<CR>")
