@@ -48,40 +48,40 @@ local ViMode = {
   -- them at initialisation time.
   static = {
     mode_names = { -- change the strings if you like it vvvvverbose!
-      n = "NORMAL",
-      no = "NORMAL?",
-      nov = "NORMAL?",
-      noV = "NORMAL?",
-      ["no\22"] = "NORMAL?",
-      niI = "NORMALi",
-      niR = "NORMALr",
-      niV = "NORMALv",
-      nt = "NORMALt",
-      v = "VISUAL",
-      vs = "VISUALs",
-      V = "VISUAL_",
-      Vs = "VISUALs",
-      ["\22"] = "^VISUAL",
-      ["\22s"] = "^VISUAL",
-      s = "SELECT",
-      S = "SELECT_",
-      ["\19"] = "^SELECT",
-      i = "INSERT",
-      ic = "INSERTc",
-      ix = "INSERTx",
-      R = "REPLACE",
-      Rc = "REPLACEc",
-      Rx = "REPLACEx",
-      Rv = "REPLACEv",
-      Rvc = "REPLACEv",
-      Rvx = "REPLACEv",
-      c = "COMMAND",
+      n = "N",
+      no = "N",
+      nov = "N",
+      noV = "N",
+      ["no\22"] = "N",
+      niI = "N",
+      niR = "N",
+      niV = "N",
+      nt = "N",
+      v = "V",
+      vs = "V",
+      V = "V",
+      Vs = "V",
+      ["\22"] = "V",
+      ["\22s"] = "V",
+      s = "S",
+      S = "S",
+      ["\19"] = "S",
+      i = "I",
+      ic = "I",
+      ix = "I",
+      R = "R",
+      Rc = "R",
+      Rx = "R",
+      Rv = "R",
+      Rvc = "R",
+      Rvx = "R",
+      c = "C",
       cv = "Ex",
       r = "...",
       rm = "M",
       ["r?"] = "?",
       ["!"] = "!",
-      t = "TERMINAL",
+      t = "T",
     },
     mode_colors = {
       n = "green",
@@ -107,7 +107,7 @@ local ViMode = {
   -- control the padding and make sure our string is always at least 6
   -- characters long.
   provider = function(self)
-    return " %7(" .. self.mode_names[self.mode] .. "%)" -- 
+    return " " .. self.mode_names[self.mode] .. "" -- 
   end,
   hl = function(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
@@ -181,7 +181,7 @@ local Diagnostics = {
     error_icon = "",
     warn_icon = "",
     info_icon = "",
-    hint_icon = "",
+    hint_icon = "󱥸",
   },
 
   init = function(self)
@@ -252,7 +252,7 @@ local Ruler = {
   -- %c = column number
   -- %P = percentage through file of displayed window
   provider = "%7(%4l:%2c",
-  hl = { fg = colors.bright_bg, bg = "green" },
+  hl = { fg = colors.bright_bg, bg = "purple" },
 }
 
 local Align = { provider = "%=", hl = { bg = colors.nvim_bg } }
