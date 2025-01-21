@@ -34,9 +34,18 @@ local plugins = {
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  -- },
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "rebelot/heirline.nvim",
+    -- You can optionally lazy-load heirline on UiEnter
+    -- to make sure all required plugins and colorschemes are loaded before setup
+    -- event = "UiEnter",
+    config = function()
+      require("configs.heirline")
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -153,9 +162,6 @@ local plugins = {
   },
   {
     "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
   },
 }
 
