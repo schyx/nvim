@@ -21,23 +21,19 @@ local plugins = {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
   },
+  -- {
+  --   "folke/which-key.nvim", -- popup if I'm confused about vim keys
+  --   event = "VeryLazy",
+  --   init = function()
+  --     vim.o.timeout = true
+  --     vim.o.timeoutlen = 300
+  --   end,
+  -- },
   {
-    "folke/which-key.nvim", -- popup if I'm confused about vim keys
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-  },
-  {
-    "stevearc/oil.nvim", -- replace netrw
+    "stevearc/oil.nvim",
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  -- },
   {
     "rebelot/heirline.nvim",
     -- You can optionally lazy-load heirline on UiEnter
@@ -124,27 +120,7 @@ local plugins = {
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
-  -- {
-  --   "mfussenegger/nvim-lint", -- linter
-  --   event = {
-  --     "BufReadPre",
-  --     "BufNewFile",
-  --   },
-  --   config = function()
-  --     local lint = require("lint")
-  --     -- lint.linters_by_ft = {
-  --     --   java = { "checkstyle" },
-  --     -- }
-  --     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-  --     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-  --       group = lint_augroup,
-  --       callback = function()
-  --         lint.try_lint()
-  --       end,
-  --     })
-  --   end,
-  -- },
-  { "mfussenegger/nvim-jdtls" },
+  -- { "mfussenegger/nvim-jdtls" },
   -- {
   --   "lervag/vimtex",
   --   lazy = false,
