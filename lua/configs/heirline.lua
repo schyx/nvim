@@ -22,6 +22,8 @@ local function setup_colors()
     git_add = utils.get_highlight("diffAdded").fg,
     git_change = utils.get_highlight("diffChanged").fg,
     nvim_bg = "#1E2326", -- background of neovim
+    text_color = "#C8BCA2",
+    inner_bg = "#2C2E33",
   }
 end
 
@@ -111,7 +113,7 @@ local ViMode = {
   end,
   hl = function(self)
     local mode = self.mode:sub(1, 1) -- get only the first mode character
-    return { fg = colors.bright_bg, bg = self.mode_colors[mode], bold = true }
+    return { fg = colors.inner_bg, bg = self.mode_colors[mode], bold = true }
   end,
   -- Re-evaluate the component only on ModeChanged event!
   -- Also allows the statusline to be re-evaluated when entering operator-pending mode
@@ -142,7 +144,7 @@ local FileIcon = {
     return self.icon and (self.icon .. " ")
   end,
   hl = function(self)
-    return { fg = self.icon_color, bg = colors.bright_bg }
+    return { fg = self.icon_color, bg = colors.inner_bg }
   end,
 }
 
@@ -162,7 +164,7 @@ local FileName = {
     end
     return filename
   end,
-  hl = { bg = colors.bright_bg },
+  hl = { bg = colors.inner_bg, fg = colors.text_color },
 }
 
 -- let's add the children to our FileNameBlock component
@@ -218,13 +220,14 @@ local Diagnostics = {
     end,
     hl = { fg = "diag_hint" },
   },
+  hl = { bg = colors.nvim_bg },
 }
 
 local FileType = {
   provider = function()
     return string.upper(vim.bo.filetype) .. " "
   end,
-  hl = { bold = true },
+  hl = { bold = true, fg = colors.text_color, bg = colors.nvim_bg },
 }
 
 local FileFormat = {
@@ -242,7 +245,7 @@ local Time = {
     "CursorHold",
     updatetime = "1000",
   },
-  hl = { bg = colors.bright_bg },
+  hl = { bg = colors.inner_bg, fg = colors.text_color },
 }
 
 -- We're getting minimalist here!
@@ -252,21 +255,23 @@ local Ruler = {
   -- %c = column number
   -- %P = percentage through file of displayed window
   provider = "%7(%4l:%2c",
-  hl = { fg = colors.bright_bg, bg = "purple" },
+  hl = { fg = colors.inner_bg, bg = "purple" },
 }
 
 local Align = { provider = "%=", hl = { bg = colors.nvim_bg } }
-local Space = { provider = " ", hl = { bg = colors.bright_bg } }
+local Space = { provider = " ", hl = { bg = colors.inner_bg } }
 local RightArrow = {
   provider = "",
   hl = {
-    fg = colors.bright_bg,
+    fg = colors.inner_bg,
+    bg = colors.nvim_bg,
   },
 }
 local LeftArrow = {
   provider = "",
   hl = {
-    fg = colors.bright_bg,
+    fg = colors.inner_bg,
+    bg = colors.nvim_bg,
   },
 }
 
