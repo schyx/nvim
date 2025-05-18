@@ -7,6 +7,7 @@ local servers = {
   "rust_analyzer",
   "clangd",
   "hls",
+  "gopls",
 }
 
 require("mason-lspconfig").setup({
@@ -16,6 +17,7 @@ require("mason-lspconfig").setup({
     "ruff",
     "rust_analyzer",
     "clangd",
+    "gopls",
   },
 })
 
