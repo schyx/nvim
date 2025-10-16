@@ -5,6 +5,7 @@ local map = vim.keymap.set
 
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
+map("i", "<C-\\>", "<ESC>")
 map("n", "<Space>", "<nop>")
 
 -- easier to move around splits

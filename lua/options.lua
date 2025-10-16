@@ -10,7 +10,7 @@ vim.opt.showmode = false
 
 -- Enable break indent
 vim.opt.breakindent = true
---
+
 -- Save undo history
 vim.opt.undofile = true
 
