@@ -118,6 +118,10 @@ local plugins = {
   {
     "goolord/alpha-nvim",
   },
+  {
+    "smjonas/inc-rename.nvim",
+    opts = {},
+  },
 }
 
 local opts = {}
