@@ -32,11 +32,11 @@ map("n", "<leader>n", "<cmd>noh<CR>")
 
 -- shows the floating window no matter what
 map("n", "[d", function()
-  vim.diagnostic.goto_prev()
+  vim.diagnostic.jump({count=-1, float=true})
   vim.diagnostic.open_float()
 end, { desc = "go to previous diagnostic and open floating window" })
 map("n", "]d", function()
-  vim.diagnostic.goto_next()
+  vim.diagnostic.jump({count=1, float=true})
   vim.diagnostic.open_float()
 end, { desc = "go to next diagnostic and open floating window" })
 
