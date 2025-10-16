@@ -94,7 +94,6 @@ local plugins = {
     opts = {
       -- Define your formatters
       formatters_by_ft = {
-        lua = { "stylua" },
         rust = { "rustfmt" },
         haskell = { "hls" },
       },
