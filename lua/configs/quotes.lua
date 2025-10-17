@@ -21,16 +21,6 @@ return {
     "-Mary Shelley, Frankenstein",
   },
   {
-    "As the man said, for every complex problem there’s a simple solution, and it’s wrong.",
-    "",
-    "-Umberto Eco, Foucault’s Pendulum",
-  },
-  {
-    "When you are on the dancefloor, there is nothing to do but dance.",
-    "",
-    "-Umberto Eco, The Mysterious Flame of Queen Loana",
-  },
-  {
     "o whale",
   },
   {
@@ -40,14 +30,13 @@ return {
     "-Kazuo Ishiguro, The Remains of the Day",
   },
   {
-    "There was another life that I might have had, but I am having this one.",
+    "We will journey through the centuries. Will you need a cane[..]?",
     "",
-    "-Kazuo Ishiguro",
+    "-Chaim Potok, My Name is Asher Lev",
   },
   {
-    "I see now that the circumstances of one's birth is irrelevent, it is what you do",
-    "with the gift of life that determines who you are.",
+    "千里之行,始于足下.",
     "",
-    "-Mewtwo",
-  },
+    "-老子《道德经》"
+  }
 }
