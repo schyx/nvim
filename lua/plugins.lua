@@ -1,20 +1,18 @@
 -- setup plugins here
-local plugins = {
-  {
-    "neanias/everforest-nvim",
-    version = false,
-    lazy = false,
-    priority = 1000, -- make sure to load this before all the other start plugins
-    -- Optional; default configuration will be used if setup isn't called.
-    config = function()
-      require("everforest").setup({
-        background = "hard",
-        disable_italic_comments = true,
-        transparent_background_level = 1,
-        ui_contrast = "high",
-      })
-    end,
-  },
+local plugins = { {
+  "neanias/everforest-nvim",
+  version = false,
+  lazy = false,
+  priority = 1000, -- make sure to load this before all the other start plugins Optional; default configuration will be used if setup isn't called.
+  config = function()
+    require("everforest").setup({
+      background = "hard",
+      disable_italic_comments = true,
+      transparent_background_level = 1,
+      ui_contrast = "high",
+    })
+  end,
+},
   {
     "nvim-treesitter/nvim-treesitter", -- language parsing
     event = { "BufReadPost", "BufNewFile" },
@@ -75,41 +73,6 @@ local plugins = {
         "hrsh7th/cmp-buffer",
       },
     },
-  },
-  {
-    "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    keys = {
-      { -- Customize or remove this keymap to your liking
-        "<leader>c",
-        function()
-          require("conform").format({ async = true, lsp_format = "fallback" })
-        end,
-        mode = "",
-        desc = "Format buffer",
-      },
-    },
-    -- Everything in opts will be passed to setup()
-    opts = {
-      -- Define your formatters
-      formatters_by_ft = {
-        rust = { "rustfmt" },
-        haskell = { "hls" },
-      },
-      -- Set up format-on-save
-      format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
-      -- Customize formatters
-      formatters = {
-        shfmt = {
-          prepend_args = { "-i", "2" },
-        },
-      },
-    },
-    init = function()
-      -- If you want the formatexpr, here is the place to set it
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
   },
   {
     "ibhagwan/fzf-lua",

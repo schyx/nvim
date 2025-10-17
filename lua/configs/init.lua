@@ -1,7 +1,6 @@
 require("configs.alpha")
 require("configs.cmp")
 require("configs.color")
-require("configs.format")
 require("configs.fzf")
 require("configs.mason")
 require("configs.oil")
