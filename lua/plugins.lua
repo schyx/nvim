@@ -21,14 +21,6 @@ local plugins = {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
   },
-  -- {
-  --   "folke/which-key.nvim", -- popup if I'm confused about vim keys
-  --   event = "VeryLazy",
-  --   init = function()
-  --     vim.o.timeout = true
-  --     vim.o.timeoutlen = 300
-  --   end,
-  -- },
   {
     "stevearc/oil.nvim",
     opts = {},
@@ -102,7 +94,6 @@ local plugins = {
     opts = {
       -- Define your formatters
       formatters_by_ft = {
-        lua = { "stylua" },
         rust = { "rustfmt" },
         haskell = { "hls" },
       },
@@ -120,24 +111,16 @@ local plugins = {
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
-  -- { "mfussenegger/nvim-jdtls" },
-  -- {
-  --   "lervag/vimtex",
-  --   lazy = false,
-  --   init = function()
-  --     vim.g.vimtex_view_general_viewer = "okular"
-  --     vim.g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-  --     vim.g.vimtex_quickfix_enabled = 1
-  --     vim.g.vimtex_syntax_enabled = 1
-  --     vim.g.vimtex_quickfix_mode = 0
-  --   end,
-  -- },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "goolord/alpha-nvim",
+  },
+  {
+    "smjonas/inc-rename.nvim",
+    opts = {},
   },
 }
 
